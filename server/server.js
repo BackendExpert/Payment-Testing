@@ -9,7 +9,7 @@ const ConnectDB = require('./config/db');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-
+const paymentRoute = require('./routes/paymentRoutes')
 
 ConnectDB();
   
@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-
+app.use('/api', paymentRoute)
 
 app.get('/', (req, res) => {
     res.send(`Server running on port ${PORT}`);
